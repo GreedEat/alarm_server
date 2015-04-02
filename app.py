@@ -13,7 +13,7 @@ class VersionCheckResource(object):
     def on_get(self, req, resp, os_name):
         if os_name in ('Android', 'ios'):
             filename = '%s.txt' % os_name
-            file_path = os.path.join(basedir, filename)
+            file_path = os.path.join(basedir, 'versions', filename)
             version = open(file_path, 'r').read()
         else:
             resp.status = falcon.HTTP_400
