@@ -1,7 +1,5 @@
 # -*- coding:utf-8 -*-
 import json
-import os
-basedir = os.path.abspath(os.path.dirname(__file__))
 
 import falcon
 
