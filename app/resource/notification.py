@@ -22,19 +22,26 @@ class NotificationsResource(object):
         for notification in notifications:
             self.results['notifications']\
                 .append(notification.get_public(extra=self.data['filters']))
-        resp.body = json.dumps(self.results)
-        return ''
+        resp.body = json.dumps(self.results, indent=4)
+
+        return resp
 
 
 class NotificationResource(object):
     results = {}
 
     def on_get(self, req, resp, id):
-        if id:
-            notification = Notification.query.get(id)
-        else:
+        if not id:
             resp.status = falcon.HTTP_400
-            return ''
+            return resp
+
+        notification = Notification.query.get(id)
+        if not notification:
+            resp.status = falcon.HTTP_404
+            return resp
+
         self.results['notification'] = notification.get_public()
-        resp.body = json.dumps(self.results)
-        return ''
+
+        resp.body = json.dumps(self.results, indent=4)
+
+        return resp
