@@ -16,7 +16,6 @@ def manage_script(argv):
     elif args[0] == 'initdb':
         print 'Falcon : Create the metadata of Base.'
         Base.metadata.create_all(bind=engine)
-
     elif args[0] == 'runserver':
         from datetime import datetime
         print '** Falcon Works {0} **'.format(str(datetime.now())[:19])
