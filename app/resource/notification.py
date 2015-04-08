@@ -31,10 +31,6 @@ class NotificationResource(object):
     results = {}
 
     def on_get(self, req, resp, id):
-        if not id:
-            resp.status = falcon.HTTP_400
-            return resp
-
         notification = Notification.query.get(id)
         if not notification:
             resp.status = falcon.HTTP_404
