@@ -14,9 +14,9 @@ class NotificationsResource(object):
     def on_get(self, req, resp):
         self.results['notifications'] = []
         self.data['filters'] = ['id', 'created_at']
-        raw_filters = req.get_param('filters')
+        raw_filters = req.get_param_as_list('filters')
         if raw_filters:
-            self.data['filters'] += raw_filters.split(',')
+            self.data['filters'].extend(raw_filters)
 
         notifications = db.query(Notification).all()
         for notification in notifications:
