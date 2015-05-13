@@ -15,10 +15,17 @@ class VersionCheckResource(object):
             return resp
 
         filename = '%s.txt' % os_name
-        file_path = \
-            os.path.join(basedir, '..', 'utils', 'versions', filename)
-        version = open(file_path, 'r').read()
+        version_path = os.path.join(basedir, '..', 'utils', 'versions')
 
-        self.results['version'] = version
+        version_name = os.path.join(version_path, 'name', filename)
+        version_code = os.path.join(version_path, 'code', filename)
+
+        version_name = open(version_name, 'r').read()
+        version_code = open(version_code, 'r').read()
+
+        self.results['version'] = {
+            'name': version_name,
+            'code': version_code
+        }
         resp.body = json.dumps(self.results, indent=4)
         return resp
