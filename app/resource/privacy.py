@@ -12,7 +12,7 @@ class PrivacyResource(object):
 
         privacy = os.path.join(privacy_path, filename)
         privacy = open(privacy, 'r').read()
-        print privacy
+
         resp.body = privacy
 
         return resp
