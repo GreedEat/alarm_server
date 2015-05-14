@@ -14,4 +14,8 @@ def add_routes(api):
     version_check = VersionCheckResource()
     api.add_route('/version/{os_name}', version_check)
 
+    from resource.privacy import PrivacyResource
+    privacy = PrivacyResource()
+    api.add_route('/privacy', privacy)
+
     return ''
