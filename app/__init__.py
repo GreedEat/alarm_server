@@ -1,4 +1,7 @@
-# -*-coding:utf-8-*-
+# -*- coding:utf-8 -*-
+import os
+basedir = os.path.abspath(os.path.dirname(__file__))
+
 import falcon
 
 
@@ -17,5 +20,9 @@ def add_routes(api):
     from resource.privacy import PrivacyResource
     privacy = PrivacyResource()
     api.add_route('/privacy', privacy)
+
+    from resource import StaticResource
+    static = StaticResource()
+    api.add_route('/static/{path}', static)
 
     return ''

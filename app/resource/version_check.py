@@ -1,9 +1,10 @@
 # -*- coding:utf-8 -*-
 import json
 import os
-basedir = os.path.abspath(os.path.dirname(__file__))
 
 import falcon
+
+from app import basedir
 
 
 class VersionCheckResource(object):
@@ -15,7 +16,7 @@ class VersionCheckResource(object):
             return resp
 
         filename = '%s.txt' % os_name
-        version_path = os.path.join(basedir, '..', 'utils', 'versions')
+        version_path = os.path.join(basedir, 'utils', 'versions')
 
         version_name = os.path.join(version_path, 'name', filename)
         version_code = os.path.join(version_path, 'code', filename)
